@@ -1,5 +1,3 @@
-# java-spring-app
-
 # Java Spring APP  
 Exemplo de aplicação de um minblog, com uso de Java Spring, Thymeleaf JPA, Hibernate e PostgreSQL.
 

@@ -1,9 +1,9 @@
 # java-spring-app
 
 # Java Spring APP  
-Exemplo de aplicação de um minblog, com uso de Java Spring, JPA, Hibernate e PostgreSQL.
+Exemplo de aplicação de um minblog, com uso de Java Spring, Thymeleaf JPA, Hibernate e PostgreSQL.
 
-This project was generated with [Java Spring Boot](https://spring.io/projects/spring-boot) version 2.6.1
+This project was generated with [Java Spring Boot](https://spring.io/projects/spring-boot) version 2.6.2
 
 ## Development server
 

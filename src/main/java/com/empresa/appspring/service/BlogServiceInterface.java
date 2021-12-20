@@ -8,4 +8,5 @@ public interface BlogServiceInterface {
     List <Post> findAll();
     Post findById(Long id);
     Post save(Post post);
+    void remove(Post post);
 }

@@ -32,11 +32,6 @@ public class BlogController {
         return "redirect:/posts";
     }
 
-    // Para que o @GetMapping seja acessado pela view, é utilizado o nome padrão
-    // com base nas letras maiúsculas da classe e no nome completo do método.
-    // Por exemplo, o método getPosts() recebe o nome "BG#getPosts" e é acessdo na
-    // view como mvc.url("BG#getPosts")
-
     // ----------------- Listagem de posts -----------------
     @GetMapping("/posts")
     public ModelAndView getPosts() {
@@ -59,16 +54,20 @@ public class BlogController {
         return mv;
     }
 
-    // ----------------- Novo post -----------------
+    // ----------------- Criação do post -----------------
     // Carrega a pagina de novo post
     @GetMapping("/newpost")
-    public String getPostForm() {
-        return "post/new-post";
+    public ModelAndView getPostForm() {
+        // Gera novo post
+        Post post = new Post();
+        // Cria a view e adiciona o post
+        ModelAndView mv = new ModelAndView("post/new-post");
+        mv.addObject("post", post);
+        return mv;
     }
 
     // Recebe o POST enviado pelo formulário
-    // O @Validated verifica se o objeto enviado cumpriu as validações da anotação
-    // JPA
+    // O @Validated verifica se o objeto cumpriu as validações da anotação da jpa
     @PostMapping("/newpost")
     public String savePost(@Validated Post post, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
@@ -82,5 +81,25 @@ public class BlogController {
         // Redireciona para a listagem de posts
         return "redirect:/posts";
     }
+
+    // ----------------- Remoção do post -----------------
+    @PostMapping("/remove")
+    public String deletePost(@Validated Post post, BindingResult result, RedirectAttributes attributes) {
+        blogService.remove(post);
+        // Redireciona para a listagem de posts
+        return "redirect:/posts";
+    }
+
+    // ----------------- Editar post -----------------
+    // Carrega a pagina de edição do post
+    // @GetMapping("/editpost")
+    // public ModelAndView getPostFormEdit() {
+    // // Busca o post pelo id
+    // Post post = blogService.findById(1l);
+    // // Cria a view e adiciona o post
+    // ModelAndView mv = new ModelAndView("post/new-post");
+    // mv.addObject("post", post);
+    // return mv;
+    // }
 
 }

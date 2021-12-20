@@ -20,24 +20,28 @@
         <div class="container" style="width: 70%;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
-                    <li class="breadcrumb-item"><a href="/posts">Posts</a></li>
+                    <li class="breadcrumb-item">
+                        <!-- A notação @{...}  permite gerar as URLs do Thymeleaf -->
+                        <a th:href="@{/posts}">Posts</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">Novo Post</li>
                 </ol>
             </nav>
             <div>
                 <th:block th:include="/post/validation-message"></th:block>
-                <form method="post">
+                <form method="post" th:action="@{/newpost}" th:object="${post}">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="titulo" placeholder="Título *">
+                        <input th:field="*{titulo}" type="text" class="form-control" name="titulo"
+                            placeholder="Título *">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="autor" placeholder="Autor *">
+                        <input th:field="*{autor}" type="text" class="form-control" name="autor" placeholder="Autor *">
                     </div>
-                    <textarea id="summernote" type="text" class="form-control" name="texto"
+                    <textarea th:field="*{texto}" id="summernote" type="text" class="form-control" name="texto"
                         placeholder="Texto *"></textarea>
                     <small class="form-text text-muted">(*) Campos obrigatórios</small>
                     <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
-                    <a href="/posts" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
+                    <a th:href="@{/posts}" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
                 </form>
             </div>
         </div>

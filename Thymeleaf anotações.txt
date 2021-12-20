@@ -1,0 +1,41 @@
+#Expressões simples:
+    Expressões variáveis: ${...}
+    Expressões de variáveis ​​de seleção: *{...}
+    Expressões de mensagem: #{...}
+    Expressões de URL de link: @{...}
+    Expressões de fragmento: ~{...}
+
+#Literais
+    Literais de texto: 'one text', 'Another one!', ...
+    Literais Número: 0, 34, 3.0, 12.3, ...
+    Literais booleanos: true,false
+    Literal nulo: null
+    Símbolos literais: one, sometext, main, ...
+
+#Operações de texto:
+    Concatenação de string: +
+    Substituições literais: |The name is ${name}|
+    Operaçoes aritimeticas:
+    Operadores binários: +, -, *, /,%
+    Sinal de menos (operador unário): -
+
+#Operações booleanas:
+    Operadores binários: and,or
+    Negação booleano (operador unária): !,not
+
+#Comparações e igualdade:
+    Comparadores: >, <, >=, <=( gt, lt, ge, le)
+    Operadores de igualdade: ==, !=( eq, ne)
+
+#Operadores condicionais:
+    Se então: (if) ? (then)
+    If-then-else: (if) ? (then) : (else)
+    Padrão: (value) ?: (defaultvalue)
+
+#Tokens especiais:
+    Nenhuma operação: _
+
+#Geração de links
+th:href="@{/order/details (orderId=${order.id})}" => '/order/details?orderId=3' 
+th:href="@{/order/{orderId}/details (orderId=${order.id})}" => '/order/3/details' 
+th:href="@{/order/{orderId}/{name} (orderId=${order.id}, name=${order.name})}" => '/order/3/nome-ordem' 

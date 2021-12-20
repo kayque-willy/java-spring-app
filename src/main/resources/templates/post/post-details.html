@@ -22,12 +22,16 @@
         <div class="container" style="width: 60%; padding-bottom: 30px;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
-                    <li class="breadcrumb-item"><a href="/posts">Posts</a></li>
+                    <li class="breadcrumb-item">
+                         <!-- A notação @{...}  permite gerar as URLs do Thymeleaf -->
+                        <a th:href="@{/posts}">Posts</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">Posts</li>
                 </ol>
             </nav>
             <article>
-                <h1 class="card-title" style="font-weight: bold; margin-bottom: 20px;"><span th:text="${post.titulo}"></span></h1>
+                <h1 class="card-title" style="font-weight: bold; margin-bottom: 20px;"><span
+                        th:text="${post.titulo}"></span></h1>
                 <p class="card-subtitle mb-2 text-muted">
                     <i class="material-icons">person_outline</i>
                     <span th:text="${post.autor}"></span>
@@ -38,7 +42,8 @@
                 <section>
                     <p class="card-text" style="margin-top: 40px;"><span th:utext="${post.texto}"></span></p>
                 </section>
-                <a href="/posts" class="btn btn-primary" role="button" style="margin-top: 10px;">Voltar</a>
+                 <!-- A notação @{...}  permite gerar as URLs do Thymeleaf -->
+                <a th:href="@{/posts}" class="btn btn-primary" role="button" style="margin-top: 10px;">Voltar</a>
             </article>
         </div>
     </main>

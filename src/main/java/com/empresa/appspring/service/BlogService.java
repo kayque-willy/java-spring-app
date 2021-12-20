@@ -29,5 +29,11 @@ public class BlogService implements BlogServiceInterface{
     public Post save(Post post) {
         return this.blogRepository.save(post);
     }
+
+    @Override
+    public void remove(Post post) {
+        this.blogRepository.delete(post);
+        return;
+    }
     
 }

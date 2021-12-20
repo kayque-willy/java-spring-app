@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +25,12 @@ public class BlogController {
 
     private BlogService blogService;
     public List<Post> posts;
+
+    // ----------------- Index -----------------
+    @RequestMapping("/")
+    public String index() {
+        return "redirect:/posts";
+    }
 
     // Para que o @GetMapping seja acessado pela view, é utilizado o nome padrão
     // com base nas letras maiúsculas da classe e no nome completo do método.
@@ -59,20 +66,21 @@ public class BlogController {
         return "post/new-post";
     }
 
-    // Recebe o post enviado pelo formulário
-    // O @Validated verifica se o objeto enviado cumpriu as validações da anotação JPA
-    @PostMapping("newpost")
+    // Recebe o POST enviado pelo formulário
+    // O @Validated verifica se o objeto enviado cumpriu as validações da anotação
+    // JPA
+    @PostMapping("/newpost")
     public String savePost(@Validated Post post, BindingResult result, RedirectAttributes attributes) {
-        if (!result.hasErrors()) {
-            // Salva o post no banco de dados
-            post.setData(LocalDate.now());
-            blogService.save(post);
-            //Redirenciona para a listagem de posts
-            return "redirect:/posts";
-        } else {
+        if (result.hasErrors()) {
             attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
+            // Redireciona para novo post
             return "redirect:/newpost";
         }
+        // Salva o post no banco de dados
+        post.setData(LocalDate.now());
+        blogService.save(post);
+        // Redireciona para a listagem de posts
+        return "redirect:/posts";
     }
 
 }

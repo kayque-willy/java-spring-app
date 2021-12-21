@@ -12,7 +12,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,7 +31,7 @@ public class BlogController {
         return "redirect:/posts";
     }
 
-    // ----------------- Listagem de posts -----------------
+    // ----------------- Página de listagem de posts -----------------
     @GetMapping("/posts")
     public ModelAndView getPosts() {
         // Busca os posts
@@ -43,7 +42,7 @@ public class BlogController {
         return mv;
     }
 
-    // ----------------- Detalhes do post -----------------
+    // ----------------- Página de Detalhes do post -----------------
     @GetMapping("/posts/{id}")
     public ModelAndView getPost(@PathVariable("id") long id) {
         // Busca o post pelo id
@@ -54,8 +53,7 @@ public class BlogController {
         return mv;
     }
 
-    // ----------------- Criação do post -----------------
-    // Carrega a pagina de novo post
+    // ----------------- Página de Criação do post -----------------
     @GetMapping("/newpost")
     public ModelAndView getPostForm() {
         // Gera novo post
@@ -66,9 +64,19 @@ public class BlogController {
         return mv;
     }
 
-    // Recebe o POST enviado pelo formulário
+    // ----------------- Página de Edição do post -----------------
+    @PostMapping("/edit")
+    public ModelAndView getPostFormEdit(@Validated Post post, BindingResult result, RedirectAttributes attributes) {
+        // Cria a view e adiciona o post
+        ModelAndView mv = new ModelAndView("post/new-post");
+        mv.addObject("post", post);
+        return mv;
+    }
+
+    // ----------------- Salva o Post -----------------
     // O @Validated verifica se o objeto cumpriu as validações da anotação da jpa
-    @PostMapping("/newpost")
+    // BindingResult e RedirectAttributes são parametros obrigatórios para o @Validated
+    @PostMapping("/save")
     public String savePost(@Validated Post post, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
             attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
@@ -82,24 +90,12 @@ public class BlogController {
         return "redirect:/posts";
     }
 
-    // ----------------- Remoção do post -----------------
+    // ----------------- Remove o post -----------------
     @PostMapping("/remove")
     public String deletePost(@Validated Post post, BindingResult result, RedirectAttributes attributes) {
         blogService.remove(post);
         // Redireciona para a listagem de posts
         return "redirect:/posts";
     }
-
-    // ----------------- Editar post -----------------
-    // Carrega a pagina de edição do post
-    // @GetMapping("/editpost")
-    // public ModelAndView getPostFormEdit() {
-    // // Busca o post pelo id
-    // Post post = blogService.findById(1l);
-    // // Cria a view e adiciona o post
-    // ModelAndView mv = new ModelAndView("post/new-post");
-    // mv.addObject("post", post);
-    // return mv;
-    // }
 
 }

@@ -29,7 +29,8 @@
             </nav>
             <div>
                 <th:block th:include="/post/validation-message"></th:block>
-                <form method="post" th:action="@{/newpost}" th:object="${post}">
+                <form method="post" th:action="@{/save}" th:object="${post}">
+                    <input th:field="*{id}" type="hidden" name="id" >
                     <div class="form-group">
                         <input th:field="*{titulo}" type="text" class="form-control" name="titulo"
                             placeholder="Título *">

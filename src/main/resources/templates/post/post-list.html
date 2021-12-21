@@ -45,13 +45,18 @@
                             <span th:text="${post.titulo}"> </span>
                         </h4>
                     </a>
-                    <form th:action="@{/remove}" th:object="${post}" method="post">
+                    <form th:object="${post}" method="post">
                         <input th:value="*{id}" type="hidden" name="id">
                         <input th:value="*{titulo}" type="hidden" name="titulo">
                         <input th:value="*{autor}" type="hidden" name="autor">
                         <input th:value="*{texto}" type="hidden" name="texto">
                         <input th:value="*{data}" type="hidden" name="data">
-                        <button type="submit" name="action" value="remove">Remover</button>
+                        <button th:formaction="@{/edit}" class="btn btn-primary" type="submit" name="action" value="edit">
+                            Editar
+                        </button>
+                        <button th:formaction="@{/remove}" class="btn btn-primary" type="submit" name="action" value="remove">
+                            Remover
+                        </button>
                     </form>
                     <p class="card-text"><span th:utext="${#strings.abbreviate(post.texto,400)} "></span></p>
                 </div>

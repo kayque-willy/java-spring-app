@@ -13,10 +13,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_LIST = {
-            // "/",
-            // "/posts",
-            // "/posts/{id}",
-            // "/newpost"
+            "/",
+            "/posts",
+            "/posts/{id}",
+            "/newpost",
+            "/edit",
+            "/save",
+            "/remove"
     };
 
     @Override

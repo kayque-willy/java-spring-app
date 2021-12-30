@@ -5,7 +5,7 @@ This project was generated with [Java Spring Boot](https://spring.io/projects/sp
 
 ## Development server
 
-Navigate to `http://localhost:8080/`. The app will automatically reload if you change any of the source files.
+Navigate to `http://localhost:8080/app-spring/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 

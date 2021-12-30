@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/app-spring")
 public class BlogController {
 
     private BlogService blogService;
@@ -28,7 +29,7 @@ public class BlogController {
     // ----------------- Index -----------------
     @RequestMapping("/")
     public String index() {
-        return "redirect:/posts";
+        return "redirect:/app-spring/posts";
     }
 
     // ----------------- Página de listagem de posts -----------------
@@ -81,13 +82,13 @@ public class BlogController {
         if (result.hasErrors()) {
             attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
             // Redireciona para novo post
-            return "redirect:/newpost";
+            return "redirect:/app-spring/newpost";
         }
         // Salva o post no banco de dados
         post.setData(LocalDate.now());
         blogService.save(post);
         // Redireciona para a listagem de posts
-        return "redirect:/posts";
+        return "redirect:/app-spring/posts";
     }
 
     // ----------------- Remove o post -----------------
@@ -95,7 +96,7 @@ public class BlogController {
     public String deletePost(@Validated Post post, BindingResult result, RedirectAttributes attributes) {
         blogService.remove(post);
         // Redireciona para a listagem de posts
-        return "redirect:/posts";
+        return "redirect:/app-spring/posts";
     }
 
 }

@@ -15,7 +15,7 @@
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid text-center">
                 <span class="navbar-brand mb-0 h1">My Blog</span>
-                <a th:href="@{/newpost}" class="btn btn-primary" role="button">Novo Post</a>
+                <a th:href="@{newpost}" class="btn btn-primary" role="button">Novo Post</a>
             </div>
         </nav>
     </header>
@@ -40,7 +40,7 @@
                         e o nome do método, por exemplo: BlogController getPost() -> BC#getPost -->
                     <!-- <a th:href="${(#mvc.url('BC#getPost').arg(0, post.id)).build()}"> -->
                     <!-- A notação @{...}  permite gerar as URLs do Thymeleaf -->
-                    <a th:href="@{/posts/{id} (id=${post.id})}">
+                    <a th:href="@{posts/{id} (id=${post.id})}">
                         <h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;">
                             <span th:text="${post.titulo}"> </span>
                         </h4>
@@ -51,10 +51,10 @@
                         <input th:value="*{autor}" type="hidden" name="autor">
                         <input th:value="*{texto}" type="hidden" name="texto">
                         <input th:value="*{data}" type="hidden" name="data">
-                        <button th:formaction="@{/edit}" class="btn btn-primary" type="submit" name="action" value="edit">
+                        <button th:formaction="@{edit}" class="btn btn-primary" type="submit" name="action" value="edit">
                             Editar
                         </button>
-                        <button th:formaction="@{/remove}" class="btn btn-primary" type="submit" name="action" value="remove">
+                        <button th:formaction="@{remove}" class="btn btn-primary" type="submit" name="action" value="remove">
                             Remover
                         </button>
                     </form>

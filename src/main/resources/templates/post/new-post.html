@@ -22,14 +22,14 @@
                 <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
                     <li class="breadcrumb-item">
                         <!-- A notação @{...}  permite gerar as URLs do Thymeleaf -->
-                        <a th:href="@{/posts}">Posts</a>
+                        <a th:href="@{posts}">Posts</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Novo Post</li>
                 </ol>
             </nav>
             <div>
                 <th:block th:include="/post/validation-message"></th:block>
-                <form method="post" th:action="@{/save}" th:object="${post}">
+                <form method="post" th:action="@{save}" th:object="${post}">
                     <input th:field="*{id}" type="hidden" name="id" >
                     <div class="form-group">
                         <input th:field="*{titulo}" type="text" class="form-control" name="titulo"
@@ -42,7 +42,7 @@
                         placeholder="Texto *"></textarea>
                     <small class="form-text text-muted">(*) Campos obrigatórios</small>
                     <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
-                    <a th:href="@{/posts}" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
+                    <a th:href="@{posts}" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
                 </form>
             </div>
         </div>

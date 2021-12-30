@@ -23,8 +23,8 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
                     <li class="breadcrumb-item">
-                         <!-- A notação @{...}  permite gerar as URLs do Thymeleaf -->
-                        <a th:href="@{/posts}">Posts</a>
+                        <!-- A notação @{..} retorna para URL anterior do Thymeleaf -->
+                        <a th:href="@{..}">Posts</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Posts</li>
                 </ol>
@@ -42,8 +42,8 @@
                 <section>
                     <p class="card-text" style="margin-top: 40px;"><span th:utext="${post.texto}"></span></p>
                 </section>
-                 <!-- A notação @{...}  permite gerar as URLs do Thymeleaf -->
-                <a th:href="@{/posts}" class="btn btn-primary" role="button" style="margin-top: 10px;">Voltar</a>
+                <!-- A notação @{..} retorna para URL anterior do Thymeleaf -->
+                <a th:href="@{..}" class="btn btn-primary" role="button" style="margin-top: 10px;">Voltar</a>
             </article>
         </div>
     </main>
